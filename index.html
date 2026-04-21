@@ -241,8 +241,8 @@ function generate() {
     return;
   }
 
-  document.getElementById("output").textContent =
-    JSON.stringify({ questions }, null, 2);
+document.getElementById("output").textContent =
+  JSON.stringify(questions, null, 2);
 }
 
 renderQuestions();
