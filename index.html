@@ -96,6 +96,16 @@
     background: #15803d;
   }
 
+  /* NEW */
+  #copyBtn {
+    display: none;
+    background: #f59e0b;
+  }
+
+  #copyBtn:hover {
+    background: #d97706;
+  }
+
   pre {
     margin-top: 20px;
     background: #020617;
@@ -136,6 +146,9 @@
 
 <button onclick="generate()">Generate JSON</button>
 <button id="nextBtn" onclick="nextQuestion()">Next Question</button>
+
+<!-- NEW -->
+<button id="copyBtn" onclick="copyJSON()">Copy JSON</button>
 
 <pre id="output">// JSON sẽ hiện ở đây</pre>
 
@@ -247,6 +260,23 @@ function generate() {
     JSON.stringify(questions, null, 2);
 
   document.getElementById("nextBtn").style.display = "inline-block";
+
+  // NEW
+  document.getElementById("copyBtn").style.display = "inline-block";
+}
+
+// NEW
+function copyJSON() {
+  const text = document.getElementById("output").textContent;
+
+  navigator.clipboard.writeText(text)
+    .then(() => {
+      alert("Copied to clipboard!");
+    })
+    .catch(err => {
+      alert("Copy failed");
+      console.error(err);
+    });
 }
 
 function nextQuestion() {
@@ -255,6 +285,9 @@ function nextQuestion() {
 
   document.getElementById("output").textContent = "// JSON sẽ hiện ở đây";
   document.getElementById("nextBtn").style.display = "none";
+
+  // NEW
+  document.getElementById("copyBtn").style.display = "none";
 
   window.scrollTo({
     top: 0,
